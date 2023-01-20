@@ -44,7 +44,7 @@ function Main(props) {
       //set req body
       body: JSON.stringify(portfolio),
     });
-    getPortfolio();
+    getPortfolio ();
   };
 
   //UPDATE
@@ -79,7 +79,7 @@ function Main(props) {
     getUser();
     getPortfolio();
   }, []);
-
+console.log(props)
   return (
     <Routes>
       <Route 
@@ -109,6 +109,7 @@ function Main(props) {
       <Route 
         path='/portfolio/:id/edit'
         element={<Edit 
+          user={props.user}
           updatePortfolio={updatePortfolio} 
           getPortfolio={getPortfolio}/>}
           updateUser={updateUser}

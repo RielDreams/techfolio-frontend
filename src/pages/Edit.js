@@ -1,11 +1,12 @@
 function Edit(props){
-  //props has props.getUser, props.updateUser, props.getPortfolio, and props.updatePortfolio
+  //props has props.getUser, props.updateUser, props.getPortfolio, and props.updatePortfolio, props.user
   const handleSubmitUser = () => {
 
   }
   const handleSubmitPortfolio = () => {
 
   }
+
   return(
     <div>
       <form onSubmit={handleSubmitUser}>
@@ -43,15 +44,23 @@ function Edit(props){
 
       <form onSubmit={handleSubmitPortfolio}>
       <label>
-          Name
+          Project Name
           <input type="text"/>
         </label>
         <label>
-          Email
+          Summary
           <input type="text"/>
         </label>
         <label>
-          Password
+          Technology
+          <input type="text"/>
+        </label>
+        <label>
+          Screenshot
+          <input type="text"/>
+        </label>
+        <label>
+          Github URL
           <input type="text"/>
         </label>
         <button type="submit" value="Change User Data"></button>
