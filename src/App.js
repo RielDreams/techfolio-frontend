@@ -5,9 +5,6 @@ import Footer from "./components/Footer";
 import { useState, useEffect } from "react";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { useState, useEffect } from "react";
-import { auth } from "./firebase";
-import { onAuthStateChanged } from "firebase/auth";
 
 
 function App() {
@@ -20,13 +17,6 @@ useEffect(()=> {
   }
 })
 
-
-useEffect(()=> {
-  const unsubscribe = onAuthStateChanged(auth, (user) => setUser(user))
-  return () => {
-    unsubscribe()
-  }
-})
 
   return (
     <div className="App">
