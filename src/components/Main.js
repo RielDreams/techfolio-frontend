@@ -86,27 +86,31 @@ function Main(props){
       />
       <Route 
         path='/explore'
-        element={<Explore />}
+        element={<Explore portfolio={portfolio}/>}
       />
       <Route 
         path='/login'
-        element={<Login />}
+        element={<Login getUser={getUser}/>}
       />
       <Route 
         path='/registration'
-        element={<Registration />}
+        element={<Registration createUser={createUser}/>}
       />
       <Route 
         path='/portfolio/new'
-        element={<New />}
+        element={<New createPortfolio={createPortfolio}/>}
       />
       <Route 
         path='/portfolio/:id'
-        element={<Show />}
+        element={<Show getPortfolio={getPortfolio}/>}
       />
       <Route 
         path='/portfolio/:id/edit'
-        element={<Edit />}
+        element={<Edit 
+          updatePortfolio={updatePortfolio} 
+          getPortfolio={getPortfolio}/>}
+          updateUser={updateUser}
+          getUser={getUser}
       />
     </Routes>
   )
