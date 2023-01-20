@@ -8,11 +8,11 @@ import New from "../pages/New";
 import Show from "../pages/Show";
 import Edit from "../pages/Edit";
 
-function Main(props) {
-  const [portfolio, setPortfolio] = useState(null);
-  const PORTFOLIO_URL = "http://localhost:4000/portfolio/";
-  const USER_URL = "http://localhost:4000/user/";
-
+function Main(props){
+  const [portfolio, setPortfolio] = useState(null)
+  const PORTFOLIO_URL = 'http://localhost:4000/portfolio/'
+  const USER_URL = 'http://localhost:4000/user/'
+  
   //GET
   const getUser = async () => {
     const response = await fetch(USER_URL);
@@ -26,54 +26,54 @@ function Main(props) {
   };
 
   //CREATE
-  const createUser = async (user) => {
-    //user param will be an object of key:value pairs
+  const createUser = async (user) => { //user param will be an object of key:value pairs
+    const token = await props.user.getIdToken();
     await fetch(USER_URL, {
-      method: "POST",
-      headers: { "Content-type": "Application/json" },
+      method: 'POST',
+      headers: {'Content-type': 'Application/json',
+      Authorization: "Bearer " + token,},
       //set req body
       body: JSON.stringify(user),
-    });
-    getUser();
-  };
-  const createPortfolio = async (portfolio) => {
-    //portfolio param will be an object of key:value pairs
+    })
+    getUser()
+  }
+  const createPortfolio = async (portfolio) => { //portfolio param will be an object of key:value pairs
     await fetch(PORTFOLIO_URL, {
-      method: "POST",
-      headers: { "Content-type": "Application/json" },
+      method: 'POST',
+      headers: {'Content-type': 'Application/json'},
       //set req body
       body: JSON.stringify(portfolio),
-    });
-    getPortfolio ();
-  };
+    })
+    getPortfolio()
+  }
 
   //UPDATE
   const updateUser = async (id, updatedUser) => {
     await fetch(USER_URL + id, {
-      method: "PUT",
-      headers: { "Content-type": "Application/json" },
-      body: JSON.stringify(updatedUser),
-    });
-    getUser();
-  };
+      method: 'PUT',
+      headers: {'Content-type':'Application/json'},
+      body: JSON.stringify(updatedUser)
+    })
+    getUser()
+  }
   const updatePortfolio = async (id, updatedPortfolio) => {
     await fetch(PORTFOLIO_URL + id, {
-      method: "PUT",
-      headers: { "Content-type": "Application/json" },
-      body: JSON.stringify(updatedPortfolio),
-    });
-    getPortfolio();
-  };
+      method: 'PUT',
+      headers: {'Content-type':'Application/json'},
+      body: JSON.stringify(updatedPortfolio)
+    })
+    getPortfolio()
+  }
 
   //DELETE
   const deleteUser = async (id) => {
-    await fetch(USER_URL + id, { method: "DELETE" });
-    getUser();
-  };
+    await fetch(USER_URL + id, {method:'DELETE'})
+    getUser()
+  } 
   const deletePortfolio = async (id) => {
-    await fetch(PORTFOLIO_URL + id, { method: "DELETE" });
-    getPortfolio();
-  };
+    await fetch(PORTFOLIO_URL + id, {method:'DELETE'})
+    getPortfolio()
+  } 
 
   useEffect(() => {
     getUser();
@@ -81,6 +81,7 @@ function Main(props) {
   }, []);
 console.log(props)
   return (
+    <main>
     <Routes>
       <Route 
         path='/'
@@ -116,7 +117,8 @@ console.log(props)
           getUser={getUser}
       />
     </Routes>
+    </main>
   )
 } 
-
+ 
 export default Main;
