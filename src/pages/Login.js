@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
     }
 
     return (
-        <div className="auth-form-container">
+        <div className="form-container">
             <h2>Login</h2>
             <form className="login-form" onSubmit={handleSubmit}>
                 <label htmlFor="email">email</label>
