@@ -20,6 +20,7 @@ function Main(props){
     const data = await response.json();
     props.setUser(data);
   };
+
   const getPortfolio = async () => {
     const response = await fetch(PORTFOLIO_URL);
     const data = await response.json();
@@ -88,7 +89,8 @@ console.log(props)
       />
       <Route 
         path='/explore'
-        element={<Explore />}
+
+        element={<div className="portfolioDisplay"><Explore portfolio={portfolio} user={props.user}/></div>}
       />
       <Route 
         path='/login'
@@ -102,9 +104,13 @@ console.log(props)
         path='/portfolio/new'
         element={<New createPortfolio={createPortfolio}/>}
       />
-      <Route 
+      <Route
         path='/portfolio/:id'
-        element={<Show getPortfolio={getPortfolio}/>}
+        element={
+          <Show
+            user={props.user}
+            updateUser={updateUser}
+          />}
       />
       <Route 
         path='/portfolio/:id/edit'
