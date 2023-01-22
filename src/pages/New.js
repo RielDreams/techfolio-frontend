@@ -11,13 +11,7 @@ function New(props){
   const handleSubmitPortfolio = (e) => {
     e.preventDefault()
     props.createPortfolio(newForm)
-    // formFields = {
-    //   projectName:'',
-    //   summary:'',
-    //   technology: '',
-    //   screenShots:'',
-    //   projectGithub:'',
-    // }
+    setNewForm(formFields)
   }
   const handleChange = (e) => {
     console.log(e.target.name, e.target.value)
