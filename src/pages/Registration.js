@@ -11,7 +11,7 @@ function Registration (props) {
     }
 
     return (
-        <div className="auth-form-container">
+        <div className="form-container">
             <h2>Registration</h2>
         <form className="registration-form" onSubmit={handleSubmit}>
             <label htmlFor="name">Full name</label>
