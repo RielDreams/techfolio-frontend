@@ -50,7 +50,7 @@ function Main(props){
   //UPDATE
   const updateUser = async (id, updatedUser) => {
     await fetch(USER_URL + id, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {'Content-type':'Application/json'},
       body: JSON.stringify(updatedUser)
     })
@@ -58,7 +58,7 @@ function Main(props){
   }
   const updatePortfolio = async (id, updatedPortfolio) => {
     await fetch(PORTFOLIO_URL + id, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {'Content-type':'Application/json'},
       body: JSON.stringify(updatedPortfolio)
     })
@@ -111,10 +111,12 @@ console.log(props)
         path='/portfolio/:id/edit'
         element={<Edit 
           user={props.user}
-          updatePortfolio={updatePortfolio} 
-          getPortfolio={getPortfolio}/>}
-          updateUser={updateUser}
+          portfolio={portfolio}
           getUser={getUser}
+          getPortfolio={getPortfolio}/>}
+          updatePortfolio={updatePortfolio} 
+          updateUser={updateUser}
+          deletePortfolio={deletePortfolio}
       />
     </Routes>
     </main>
