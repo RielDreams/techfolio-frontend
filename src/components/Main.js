@@ -8,6 +8,7 @@ import New from "../pages/New";
 import Show from "../pages/Show";
 import Edit from "../pages/Edit";
 
+
 function Main(props){
   const [portfolio, setPortfolio] = useState(null)
   const PORTFOLIO_URL = 'http://localhost:4000/portfolio/'
@@ -27,11 +28,9 @@ function Main(props){
 
   //CREATE
   const createUser = async (user) => { //user param will be an object of key:value pairs
-    const token = await props.user.getIdToken();
     await fetch(USER_URL, {
       method: 'POST',
-      headers: {'Content-type': 'Application/json',
-      Authorization: "Bearer " + token,},
+      headers: {'Content-type': 'Application/json'},
       //set req body
       body: JSON.stringify(user),
     })
@@ -74,7 +73,7 @@ function Main(props){
     await fetch(PORTFOLIO_URL + id, {method:'DELETE'})
     getPortfolio()
   } 
-
+  
   useEffect(() => {
     getUser();
     getPortfolio();
@@ -89,7 +88,7 @@ console.log(props)
       />
       <Route 
         path='/explore'
-        element={<div className="portfolioDisplay"><Explore portfolio={portfolio}/></div>}
+        element={<Explore />}
       />
       <Route 
         path='/login'
@@ -122,5 +121,5 @@ console.log(props)
     </main>
   )
 } 
- 
+
 export default Main;

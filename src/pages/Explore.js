@@ -7,7 +7,8 @@ function Explore({portfolio}) {
 
 	const Loaded = () => {
 		return portfolio.map((port)=> (
-      <Card key={port._id} className="portfolioCard">
+      <div className="portfolioCard">
+      <Card key={port._id}>
         <Card.Image size='5by3'
       src={port.screenShots} alt="my project should be here" />
       <Card.Content>
@@ -29,10 +30,10 @@ function Explore({portfolio}) {
       <h3>{port.bio}</h3>
       <h3>{port.skills}</h3>
       </Content>
-     
-      
       </Card.Content>
       </Card>
+      </div>
+
     ))
   }
 
