@@ -28,4 +28,5 @@
 <li>Delete function for portfolio work</li>
 <li>Adding a key-value pair for "uid" in both the portfolio and user schemas so an individual's personal portfolio page can show their work from their inputed project information instead of just displaying on the explore page </li>
 <li>Issue with the logout button once logged in </li>
+<li>Render to registration page when "get started" button is clicked on Home page</li>
 </ul>
