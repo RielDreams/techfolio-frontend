@@ -24,15 +24,15 @@
 
 
 import { useParams } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-function Show(props) {
+function Show(props, {portfolio}) {
     //accesses the id from url params
     const { uid } = useParams();
 
 
 //     //uses the id to find the specific user’s portfolio info (data) in the array to show
      const data = props.user ? props.user.find(data => data.uid === uid) : null;
-
 
 //     //uses the id to find the specific user’s project info (project) in the array to show
 //     //const project = props.portfolio ? props.portfolio.find(project => project._id === id) : null;
@@ -59,10 +59,24 @@ function Show(props) {
 		        <h3 class="skillsTitle">Skills </h3>
             <span class="skills" >{data.skills} </span>
             {data.portfolio}
+
+            <h3 class="socials">Contact </h3>
+            <span class="sociallinks" >
+              <p><a href={data.github}>{data.github}</a></p>
+              <p><a href={data.linkedin}>{data.linkedin}</a></p>
+              <p><a href={data.email}>{data.email}</a></p>
+            </span>
+        
+         
+
             </div>
+
+        
+  
+          
          )
        }
-
+     
 
        const loading = () => {
         	return <h2> Loading...</h2>
