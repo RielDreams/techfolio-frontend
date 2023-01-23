@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import 'bulma/css/bulma.min.css'
 import {Card, Media, Content, Heading} from "react-bulma-components"
 
 function Explore({portfolio, user}) {
   console.log(user)
+
+  
+   
 
 	const Loaded = () => {
 		return portfolio.map((port)=> (
