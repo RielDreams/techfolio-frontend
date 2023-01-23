@@ -76,10 +76,10 @@ function Main(props){
   } 
   
   useEffect(() => {
-    getUser()
-    getPortfolio()
+    getUser();
+    getPortfolio();
   }, []);
-
+console.log(props)
   return (
     <main>
     <Routes>
@@ -94,15 +94,15 @@ function Main(props){
       />
       <Route 
         path='/login'
-        element={<Login />}
+        element={<Login getUser={getUser}/>}
       />
       <Route 
         path='/registration'
-        element={<Registration />}
+        element={<Registration createUser={createUser}/>}
       />
       <Route 
         path='/portfolio/new'
-        element={<New />}
+        element={<New createPortfolio={createPortfolio}/>}
       />
       <Route
         path='/portfolio/:id'
@@ -115,7 +115,14 @@ function Main(props){
       />
       <Route 
         path='/portfolio/:id/edit'
-        element={<Edit />}
+        element={<Edit 
+          user={props.user}
+          portfolio={portfolio}
+          getUser={getUser}
+          getPortfolio={getPortfolio}/>}
+          updatePortfolio={updatePortfolio} 
+          updateUser={updateUser}
+          deletePortfolio={deletePortfolio}
       />
     </Routes>
     </main>
