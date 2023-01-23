@@ -23,9 +23,6 @@ function Header(props){
        <Link to='/portfolio/:id' className="link">
          <li>My Portfolio</li>
        </Link>
-       <Link to='/portfolio/:id/edit' className="link">
-         <li>Edit Portfolio</li>
-       </Link>
        </div>
        : (
         <Link to='/login' className="link">

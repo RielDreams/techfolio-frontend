@@ -1,23 +1,28 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 function Edit(props){
   //props has user, portfolio,  getUser, getPortfolio, updateUser,
   // updatePortfolio, and deletePortfolio
-  
-  console.log('user is:',props.user, 'portfolio is',props.portfolio)
-  const formFieldsUser = {
-    name:'',
-    occupation:'',
-    bio:'',
-    skills: '',
-    linkedin:'',
-    github:''
+  console.log(props)
+  let {id} = useParams()
+  const currentPortfolio = props.portfolio.find(obj => obj._id === id)
+  const userId = props.user[0]._id
+
+  let formFieldsUser = {
+    name:props.user[0].name,
+    occupation:props.user[0].occupation,
+    bio:props.user[0].bio,
+    skills: props.user[0].skills,
+    linkedin: props.user[0].linkedin,
+    github: props.user[0].github,
   }
-  const formFieldsPortfolio = {
-    projectName:'',
-    summary:'',
-    technology: '',
-    screenShots:'',
-    projectGithub:''
+  let formFieldsPortfolio = {
+    projectName: currentPortfolio.projectName,
+    summary: currentPortfolio.summary,
+    technology: currentPortfolio.technology,
+    screenShots: currentPortfolio.screenShots,
+    projectGithub: currentPortfolio.projectGithub,
+    uid: id,
   }
   const [newFormUser, setNewFormUser] = useState(formFieldsUser)
   const [newFormPortfolio, setNewFormPortfolio] = useState(formFieldsPortfolio)
@@ -33,30 +38,26 @@ function Edit(props){
       ...newFormPortfolio,
       [e.target.name]:e.target.value
     })
+    console.log('PORTFOLIO IS: ', props.portfolio)
   }
-  const handleSubmitUser = (e) => {
+  const handleSubmitUser = async (e) => {
     e.preventDefault()
-    props.updateUser(newFormUser)
-    formFieldsUser = {
-      name:'',
-      occupation:'',
-      bio:'',
-      skills: '',
-      linkedin:'',
-      github:''
-    }
+    await fetch('http://localhost:4000/user/' + userId, {
+        method: 'PUT',
+        headers: {'Content-type': 'Application/json'},
+        //set req body
+        body: JSON.stringify(newFormUser),
+  })
+    
   }
-  const handleSubmitPortfolio = (e) => {
+  const handleSubmitPortfolio = async (e) => {
     e.preventDefault()
-    props.updatePortfolio(newFormPortfolio)
-    formFieldsPortfolio = {
-      projectName:'',
-      summary:'',
-      technology: '',
-      screenShots:'',
-      projectGithub:'',
-    }
-  }
+    await fetch('http://localhost:4000/portfolio/'+id, {
+        method: 'PUT',
+        headers: {'Content-type': 'Application/json'},
+        //set req body
+        body: JSON.stringify(newFormPortfolio),
+  })}
 
   return(
     <div>
@@ -121,4 +122,4 @@ function Edit(props){
   )
   } 
   
-  export default Edit;
+  export default Edit

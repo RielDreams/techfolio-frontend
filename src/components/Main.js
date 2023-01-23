@@ -50,7 +50,7 @@ function Main(props){
   //UPDATE
   const updateUser = async (id, updatedUser) => {
     await fetch(USER_URL + id, {
-      method: 'PATCH',
+      method: 'PUT',
       headers: {'Content-type':'Application/json'},
       body: JSON.stringify(updatedUser)
     })
@@ -58,7 +58,7 @@ function Main(props){
   }
   const updatePortfolio = async (id, updatedPortfolio) => {
     await fetch(PORTFOLIO_URL + id, {
-      method: 'PATCH',
+      method: 'PUT',
       headers: {'Content-type':'Application/json'},
       body: JSON.stringify(updatedPortfolio)
     })
