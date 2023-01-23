@@ -110,6 +110,7 @@ function Main(props){
           <Show
             user={props.user}
             updateUser={updateUser}
+
           />}
       />
       <Route 
