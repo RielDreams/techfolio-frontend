@@ -13,7 +13,7 @@
 <li>JavaScript</li>
 <li>React</li>
 <li>Firebase</li>
-<li>scss</li>
+<li>css</li>
 <li>Heroku</li>
 </ul>
 
