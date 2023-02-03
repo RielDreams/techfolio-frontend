@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { logIn, logOut } from "../firebase";
+import { Link } from 'react-router-dom';
 
  function Login (props) {
     const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ import { logIn, logOut } from "../firebase";
     }
 
     return (
-        <div className="auth-form-container">
+        <div className="form-container">
             <h2>Login</h2>
             <form className="login-form" onSubmit={handleSubmit}>
                 <label htmlFor="email">email</label>
@@ -32,9 +33,12 @@ import { logIn, logOut } from "../firebase";
                 <button type="submit">Log In</button>
             </form>
             <button onClick={logIn}>Google login</button>
+
+            <Link to='/registration'>
             <button className="link-btn" 
-              onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here.
+              onClick={() => props.onFormSwitch('registration')}>Don't have an account? Register here.
             </button>
+            </Link>
         </div>
     );
 }

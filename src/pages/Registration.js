@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"
+
 
 function Registration (props) {
     const [email, setEmail] = useState('');
@@ -11,7 +13,7 @@ function Registration (props) {
     }
 
     return (
-        <div className="auth-form-container">
+        <div className="form-container">
             <h2>Registration</h2>
         <form className="registration-form" onSubmit={handleSubmit}>
             <label htmlFor="name">Full name</label>
@@ -40,9 +42,11 @@ function Registration (props) {
               name="password" />
             <button type="submit">Log In</button>
         </form>
-        <button 
-          className="link-btn" 
-          onClick={() => props.onFormSwitch('login')}>Already have an account? Login here.</button>
+        <Link to='/login'>
+        <button className="link-btn" 
+          onClick={() => props.onFormSwitch('login')}>Already have an account? Login here.
+        </button>
+        </Link>
     </div>
     );
 }

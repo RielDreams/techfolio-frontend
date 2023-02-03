@@ -1,42 +1,50 @@
 import { Link } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import 'bulma/css/bulma.min.css'
 import {Card, Media, Content, Heading} from "react-bulma-components"
 
-function Explore({portfolio}) {
+function Explore({ portfolio, user }) {
+  console.log('portfolio is: ', portfolio);
 
+  const Loaded = () => {
+    return portfolio.map((port) => (
+      <div className="portfolioCard">
+        <Card key={port._id}>
+          <Card.Image
+            size="5by3"
+            src={port.screenShots}
+            alt="my project should be here"
+          />
+          <Card.Content>
+            <Media>
+              <Media.Item>
+                <Link to={`/portfolio/${user[0]}`}>
+                  <Heading className="Card.Header">{port.projectName}</Heading>
+                </Link>
+              </Media.Item>
+              <Media.Item>
+                <section className="social-media">
+                  <h5>
+                    <a href={port.projectGithub}>github</a>
+                  </h5>
+                </section>
+              </Media.Item>
+            </Media>
+            <Content>
+              <p>{port.summary}</p>
+              <h4>Technology Used</h4>
+              <p>{port.technology}</p>
+            </Content>
+          </Card.Content>
+          <Link to={`/portfolio/${port._id}/edit`}>
+            <button>EDIT</button>
+          </Link>
+        </Card>
+      </div>
+    ));
+  };
 
-	const Loaded = () => {
-		return portfolio.map((port)=> (
-      <Card key={port._id} className="portfolioCard">
-        <Card.Image size='5by3'
-      src={port.screenShots} alt="my project should be here" />
-      <Card.Content>
-      <Media>
-        <Media.Item >
-        <Link to={`/portfolio/${port._id}`}>
-        <Heading className="Card.Header">{port.name}</Heading>
-      </Link>
-      </Media.Item>
-      <Media.Item>
-      <section className="social-media">
-      <h5><a href={port.github}>github</a></h5>
-      <h5><a href={port.linkedin}>Linkedin</a></h5>
-      <h5><a href={port.facebook}>facebook</a></h5>
-      </section>
-      </Media.Item>
-      </Media>
-      <Content>
-      <h3>{port.bio}</h3>
-      <h3>{port.skills}</h3>
-      </Content>
-     
-      
-      </Card.Content>
-      </Card>
-    ))
-  }
-
-	return portfolio ? Loaded() : <h1>Loading...</h1>
+  return portfolio ? Loaded() : <h1>Loading...</h1>;
 }
 
 export default Explore;
